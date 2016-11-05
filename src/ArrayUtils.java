@@ -5,7 +5,15 @@
 public class ArrayUtils {
 
     public static int[] trim(int[] array, int newLength){
-        return new int[newLength];
+        if (newLength < 0)
+            throw new IllegalArgumentException();
+
+        if(array.length < newLength)
+            return new int[0];
+
+        int[] ret = new int[newLength];
+        System.arraycopy(array, 0, ret, 0, newLength);
+        return ret;
     }
 
     public static int[] resize(int[] array, int newLength){
@@ -16,7 +24,7 @@ public class ArrayUtils {
         return new int[array.length];
     }
 
-    public static boolean compareNoRagardToOrger(int[] first, int[] second){
+    public static boolean compareNoRegardToOrder(int[] first, int[] second){
         return false;
     }
 
