@@ -3,6 +3,8 @@
  */
 
 import java.util.Arrays;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class ArrayUtils {
 
@@ -15,16 +17,35 @@ public class ArrayUtils {
     }
 
     public static int[] shuffle(int[] array){
-        return new int[array.length];
+        if (array == null)
+            throw new IllegalArgumentException();
+
+        int[] ret = new int[array.length];
+        Random rnd = ThreadLocalRandom.current();
+        for (int i = array.length - 1; i > 0; i--) {
+            int index = rnd.nextInt(i + 1);
+            swap(array[index], array[i]);
+        }
+        System.arraycopy(array, 0, ret, 0, array.length);
+        return ret;
+    }
+
+    private static void swap(int firstElement, int secondElement){
+        int swapElement = firstElement;
+        firstElement = secondElement;
+        secondElement = swapElement;
     }
 
     public static boolean compareNoRegardToOrder(int[] first, int[] second){
-        return false;
+        if (first == null || second == null)
+            throw new IllegalArgumentException();
+        Arrays.sort(first);
+        Arrays.sort(second);
+        return Arrays.equals(first,second);
     }
 
-    public static String print(int[] array){
-        return array.toString();
+    public static String convertToString(int[] array){
+        return Arrays.toString(array);
 
     }
-
 }
