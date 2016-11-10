@@ -8,38 +8,44 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class ArrayUtils {
 
-    public static int[] resize(int[] array, int newLength) {
-        if (array == null || newLength < 0)
+    public static int[] resize(int[] array, int newLength){
+        if (array == null ||newLength < 0)
             throw new IllegalArgumentException();
 
-        return Arrays.copyOf(array, newLength);
+        int[] ret = Arrays.copyOf(array, newLength);
+        return ret;
     }
 
-    public static void shuffle(int[] array) {
+    public static int[] shuffle(int[] array){
         if (array == null)
             throw new IllegalArgumentException();
 
+        int[] ret = new int[array.length];
         Random rnd = ThreadLocalRandom.current();
         for (int i = array.length - 1; i > 0; i--) {
             int index = rnd.nextInt(i + 1);
-            int swapElement = array[index];
-            array[index] = array[i];
-            array[i] = swapElement;
+            swap(array[index], array[i]);
         }
+        System.arraycopy(array, 0, ret, 0, array.length);
+        return ret;
     }
-    
-    public static boolean compareWithoutOrder(int[] first, int[] second) {
+
+    private static void swap(int firstElement, int secondElement){
+        int swapElement = firstElement;
+        firstElement = secondElement;
+        secondElement = swapElement;
+    }
+
+    public static boolean compareNoRegardToOrder(int[] first, int[] second){
         if (first == null || second == null)
             throw new IllegalArgumentException();
-
-        int[] sortedFirst = Arrays.copyOf(first, first.length);
-        int[] sortedSecond = Arrays.copyOf(second, second.length);
-        Arrays.sort(sortedFirst);
-        Arrays.sort(sortedSecond);
-        return Arrays.equals(sortedFirst, sortedSecond);
+        Arrays.sort(first);
+        Arrays.sort(second);
+        return Arrays.equals(first,second);
     }
 
-    public static String convertToString(int[] array) {
+    public static String convertToString(int[] array){
         return Arrays.toString(array);
+
     }
 }
