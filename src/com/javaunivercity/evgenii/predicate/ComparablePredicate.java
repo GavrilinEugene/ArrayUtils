@@ -3,7 +3,7 @@ package com.javaunivercity.evgenii.predicate;
 import com.javaunivercity.evgenii.condition.Condition;
 
 /*
- * предикат сравнения (элемент 'операция сравнениясравнение' значение))
+ * предикат сравнения (элемент 'операция сравнения' значение))
  */
 public class ComparablePredicate implements Predicate {
 
