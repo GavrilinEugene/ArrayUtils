@@ -1,6 +1,8 @@
 /*
-утилита для работы с массивами типа int
+ * утилита для работы с массивами типа int
  */
+
+import com.javaunivercity.evgenii.predicate.Predicate;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -30,6 +32,18 @@ public class ArrayUtils {
         int swapElement = array[firstIndex];
         array[firstIndex] = array[secondIndex];
         array[secondIndex] = swapElement;
+    }
+
+    public static int[] filter(int[] array, Predicate predicate) {
+        int[] filtered = resize(array, array.length);
+        int filteredIndex = 0;
+        for (int index = 0; index < array.length; index++) {
+            if (predicate.satisfies(array[index])) {
+                filtered[filteredIndex] = array[index];
+                filteredIndex++;
+            }
+        }
+        return resize(filtered, filteredIndex);
     }
 
 
