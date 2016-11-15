@@ -9,7 +9,7 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class ArrayUtilsTest {
-    @Test
+    @org.junit.Test
     public void filter() throws Exception {
         int[] originalArray = new int[]{100, 200, 33, -5, 3435};
         int[] expected = new int[]{200, 3435};

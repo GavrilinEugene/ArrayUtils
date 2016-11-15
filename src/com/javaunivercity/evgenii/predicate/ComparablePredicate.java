@@ -2,6 +2,9 @@ package com.javaunivercity.evgenii.predicate;
 
 import com.javaunivercity.evgenii.condition.Condition;
 
+/*
+ * предикат сравнения (элемент 'операция сравнениясравнение' значение))
+ */
 public class ComparablePredicate implements Predicate {
 
     private int limiterValue;

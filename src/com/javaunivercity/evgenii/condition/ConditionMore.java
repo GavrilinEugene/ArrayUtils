@@ -1,5 +1,8 @@
 package com.javaunivercity.evgenii.condition;
 
+/*
+ * условие (правый элемент > левый элемент)
+ */
 public class ConditionMore implements Condition {
 
     @Override
