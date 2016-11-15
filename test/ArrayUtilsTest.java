@@ -1,8 +1,29 @@
+import com.javaunivercity.evgenii.condition.ConditionLess;
+import com.javaunivercity.evgenii.condition.ConditionMore;
+import com.javaunivercity.evgenii.predicate.ComparablePredicate;
+import com.javaunivercity.evgenii.predicate.EvenPredicate;
+import org.junit.Test;
+
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
 public class ArrayUtilsTest {
+    @org.junit.Test
+    public void filter() throws Exception {
+        int[] originalArray = new int[]{100, 200, 33, -5, 3435};
+        int[] expected = new int[]{200, 3435};
+        int[] filtered = ArrayUtils.filter(originalArray, new ComparablePredicate(new ConditionMore(), 100));
+        assertArrayEquals(expected, filtered);
+
+        expected = new int[]{33, -5};
+        filtered = ArrayUtils.filter(originalArray, new ComparablePredicate(new ConditionLess(), 100));
+        assertArrayEquals(expected, filtered);
+
+        expected = new int[]{100, 200};
+        filtered = ArrayUtils.filter(originalArray, new EvenPredicate());
+        assertArrayEquals(expected, filtered);
+    }
 
     @org.junit.Test
     public void resize() throws Exception {
